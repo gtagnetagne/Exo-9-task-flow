@@ -66,3 +66,22 @@
     text-decoration: line-through;
     color: rgba(84, 255, 14, 0.4);
 }
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.editInput {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(59, 121, 246, 0.6);
+    color: white;
+    font-family: inherit;
+    font-size: 1em;
+    outline: none;
+    padding: 2px 4px;
+    width: 100%;
+}

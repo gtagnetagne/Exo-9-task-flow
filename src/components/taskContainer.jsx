@@ -1,17 +1,18 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Footer } from "./footer/footer"
 import { Header } from "./header/header"
 import { TaskInput } from "./taskInput/taskInput"
 import { TaskList } from "./taskList/taskList"
 
-export const TackContainer = () => {
+export const TaskContainer = () => {
 
     const [tasksList, setTasksList] = useState([]);
+    const nextId = useRef(1);
 
     const addTask = (title) => {
         const newTask = {
-            id: tasksList.length ? tasksList[tasksList.length-1].id+1:1,
-            title: title,
+            id: nextId.current++,
+            title,
             completed: false,
         };
         setTasksList([...tasksList, newTask]);
@@ -29,16 +30,16 @@ export const TackContainer = () => {
         setTasksList(tasksList.filter((task) => task.id !== id));
     };
 
-    const getTaskCounts = () => {
-        const completedTasks = tasksList.filter((task) => task.completed).length;
-        const incompletedTasks = tasksList.length - completedTasks;
-        return {
-            completedTasks,
-            incompletedTasks
-        };
+    const updateTask = (id, newTitle) => {
+        setTasksList(
+            tasksList.map((task) =>
+                task.id === id ? { ...task, title: newTitle } : task
+            )
+        );
     };
 
-    const { completedTasks, incompletedTasks } = getTaskCounts();
+    const completedTasks = tasksList.filter((task) => task.completed).length;
+    const incompletedTasks = tasksList.length - completedTasks;
 
     return (
         <main>
@@ -48,9 +49,10 @@ export const TackContainer = () => {
                 tasksList={tasksList}
                 editTask={editTask}
                 deleteTask={deleteTask}
+                updateTask={updateTask}
                 incompletedTasks={incompletedTasks}
             />
-            <Footer completedTasks = {completedTasks}/>
+            <Footer completedTasks={completedTasks} />
         </main>
     );
-} 
+}

@@ -1,19 +1,18 @@
-// Ce composant est utilisé pour afficher le champ de saisie de tâche.
 import { useState } from "react";
 import styles from "./taskInput.module.css";
 
 export const TaskInput = ({ addTask }) => {
 
-    // e = event
     const [taskTitle, setTaskTitle] = useState("");
+
     const handleInputChange = (e) => {
         setTaskTitle(e.target.value);
-    }
+    };
 
     const handleAddTask = (e) => {
         e.preventDefault();
-        if (taskTitle.trim()) { //ce if est une sécurité pour éviter l'envoi de tâche vide
-            addTask(taskTitle);
+        if (taskTitle.trim()) {
+            addTask(taskTitle.trim());
             setTaskTitle("");
         }
     };

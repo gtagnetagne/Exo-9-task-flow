@@ -1,10 +1,10 @@
-import { TackContainer } from "./components/tackContainer"
+import { TaskContainer } from "./components/taskContainer"
 
 function App() {
 
   return (
     <>
-      <TackContainer/>
+      <TaskContainer/>
     </>
   )
 }

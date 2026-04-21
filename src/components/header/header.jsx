@@ -1,4 +1,3 @@
-// Ce composant est utilisé pour afficher l'en-tête de l'application.
 import styles from "./header.module.css";
 import reactLogo from "../../assets/react.svg";
 
